@@ -37,7 +37,7 @@ class MainTest {
                 sum ++;
                 break;
         }
-        assertTrue(sum==2);
+        assertTrue(sum==0);
     }
 
 }
