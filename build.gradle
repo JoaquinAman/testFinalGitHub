@@ -1,6 +1,49 @@
+buildscript {
+    repositories {
+        maven {
+            url 'https://jalasoftdevopsjoaquinaman.jfrog.io/artifactory/repovirtual'
+            credentials {
+                username = "${artifactory_user}"
+                password = "${artifactory_password}"
+            }
+        }
+        
+    }
+    dependencies {
+        //Check for the latest version here: http://plugins.gradle.org/plugin/com.jfrog.artifactory
+        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4+"
+    }
+}
+
 plugins {
     id 'java'
     id "org.sonarqube" version "3.3"
+}
+
+allprojects {
+    apply plugin: "com.jfrog.artifactory"
+}
+
+artifactory {
+    contextUrl = "${artifactory_contextUrl}"   //The base Artifactory URL if not overridden by the publisher/resolver
+    publish {
+        repository {
+            repoKey = 'repolocal'
+            username = "${artifactory_user}"
+            password = "${artifactory_password}"
+            maven = true
+            
+        }
+    }
+    resolve {
+        repository {
+            repoKey = 'repovirtual'
+            username = "${artifactory_user}"
+            password = "${artifactory_password}"
+            maven = true
+            
+        }
+    }
 }
 
 group 'org.example'
@@ -26,3 +69,8 @@ sonarqube {
     property "sonar.host.url", "https://sonarcloud.io"
   }
 }
+
+
+
+
+
