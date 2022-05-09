@@ -19,7 +19,7 @@ permissions:
 
 jobs:
   build:
-
+    needs: [ tests, sonarcloud ]
     runs-on: ubuntu-latest
 
     steps:
@@ -43,7 +43,7 @@ jobs:
 
   tests:
     name: Unit Tests
-    needs: [ build ]
+#     needs: [ build ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
