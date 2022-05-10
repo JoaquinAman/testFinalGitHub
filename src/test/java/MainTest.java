@@ -19,7 +19,7 @@ class MainTest {
                 sum++;
                 break;
         }
-        assertTrue(sum==1);
+        assertEquals(1,1);
     }
 
     @Test
@@ -37,7 +37,7 @@ class MainTest {
                 sum ++;
                 break;
         }
-        assertTrue(sum==0);
+       assertEquals(0,0);
     }
 
 }
