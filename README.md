@@ -8,6 +8,9 @@
 ![runsInParallelEvidence2](https://user-images.githubusercontent.com/55667385/167526117-c090e94c-9bfe-47c3-a358-5737c5eaa1a2.JPG)
 
 4. En sonarcloud setee el qualitygate
+![conditionsInSonarCloud](https://user-images.githubusercontent.com/55667385/167526797-d6a71cb1-04f8-4cf2-a923-ad86ef57bc3f.JPG)
+
+Y como deberia, frena el pipelina correctamente
 ![failsBecauseOfQualityGate](https://user-images.githubusercontent.com/55667385/167526223-18684af2-013f-4a0c-acfe-89579d198e2e.JPG)
 
 5. Agregue el job de sonarcloud
