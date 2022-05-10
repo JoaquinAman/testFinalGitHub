@@ -1,25 +1,17 @@
 # testFinalGitHub
-escribir gradle app y sus tests
+1. Escribi gradle app y sus tests
 
-subirlo en github
+2. Lo subi a github
 
-escribir el gradle.yml
+3. Escribi el gradle.yml: hace el build, corre test, job de sonarcloud, job de artifacts, gitleaks y snyk. Unit Test y SonarCloud corren en paralelo, no secuencial
 
-script: gradle sonarqube -Dsonar.qualitygate.wait=true
-buscar porque mvn no esta corriendo mis tests
+4. En sonarcloud setee el qualitygate
 
-sonarcloud seteo qualitygate
+5. Agregue el job de sonarcloud
 
-agrego el job de sonarcloud
+6. En jfrog cree a mano el local, remoto y virtual. En el virtual inclui el local y el remoto. Set me up y segui los pasos. Me baje el gradle.properties(que tiene las variables de entorno que usa el build.gradle)
 
-jfrog:
-crear a mano el local, remoto y virtual
-en el virtual incluir el local y el remoto
-le damos set me up al virtual y te da los pasos a hacer.
-copias el codigo que va en build.gradle
+7. gitleaks: googleando encontre el job que use.
 
-poner el buildscript arriba de todo en el build.gradle
-bajarse el gradle.properties(que tiene las variables de entorno que usa el build.gradle)
-y run wokflow
-
-gitleaks: googleando encontre el job lo puse y corrio
+8. snyk: googleando encontre el job que use.
+9. Arregle vulnerabilidades encontradas por sonarCloud(Tests corregidos)
