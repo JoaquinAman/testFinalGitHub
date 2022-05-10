@@ -76,41 +76,26 @@ jobs:
     name: gitleaks
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2 
-#         with:
-#           fetch-depth: '0'
+      - uses: actions/checkout@v2
       - name: gitleaks-action
         uses: zricethezav/gitleaks-action@master
 
 
-  security:
-    runs-on: ubuntu-latest
-    steps:
-      - run: chmod +x ./gradlew
-      - uses: actions/checkout@master
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/gradle@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          args: --severity-threshold=high
-
-
-#   security_snyk:
-#       runs-on: ubuntu-latest
-#       steps:
-#         - uses: actions/checkout@master
-#         - name: Run Snyk to check for vulnerabilities
-#           uses: snyk/actions/gradle@master
-#           continue-on-error: true # To make sure that SARIF upload gets called
-#           env:
-#             SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-#           with:
-#             args: --sarif-file-output=snyk.sarif
-#         - name: Upload result to GitHub Code Scanning
-#           uses: github/codeql-action/upload-sarif@v1
-#           with:
-#             sarif_file: snyk.sarif
+  security_snyk:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@master
+        - name: Run Snyk to check for vulnerabilities
+          uses: snyk/actions/gradle@master
+          continue-on-error: true # To make sure that SARIF upload gets called
+          env:
+            SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+          with:
+            args: --sarif-file-output=snyk.sarif
+        - name: Upload result to GitHub Code Scanning
+          uses: github/codeql-action/upload-sarif@v1
+          with:
+            sarif_file: snyk.sarif
 
 #   anchore_job:
 #       runs-on: ubuntu-latest
